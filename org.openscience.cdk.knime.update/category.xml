@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="org.openscience.cdk.knime.feature" version="0.0.0">
+       <category name="knime-cdk" />
+   </feature>
+
+   <category-def name="knime-cdk" label="knime-cdk nodes">
+       <description>knime-cdk nodes</description>
+   </category-def>
+</site>

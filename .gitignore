@@ -1,1 +1,3 @@
 */bin/
+target/
+org.openscience.cdk.knime/knime-cdk.jar
