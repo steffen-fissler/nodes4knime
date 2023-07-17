@@ -95,7 +95,7 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 				outCell = fact.createDataCell();
 			} catch (Exception ex) {
 				String warningText = "Empty fingerprint: " + row.getKey().getString();
-				if !(ex.getMessage().startsWith("Too many paths generate.")) {
+				if (!ex.getMessage().startsWith("Too many paths generate.")) {
 					warningText += " - Too many paths generated. We're working to make this faster.";
 				}
 				MessageBuilder messageBuilder = new MessageBuilder();
