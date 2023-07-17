@@ -15,6 +15,8 @@ import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.NodeModel;
+import org.knime.core.node.message.Message;
+import org.knime.core.node.message.MessageBuilder;
 import org.knime.core.util.MultiThreadWorker;
 import org.openscience.cdk.fingerprint.CircularFingerprinter;
 import org.openscience.cdk.fingerprint.EStateFingerprinter;
@@ -28,6 +30,7 @@ import org.openscience.cdk.knime.commons.CDKNodeUtils;
 import org.openscience.cdk.knime.nodes.fingerprints.FingerprintSettings.FingerprintTypes;
 import org.openscience.cdk.knime.type.CDKValue;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
+import java.util.function.Consumer;
 
 public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 
@@ -36,10 +39,11 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 	private final int columnIndex;
 	private final BufferedDataContainer bdc;
 	private final FingerprintSettings settings;
+	private final Consumer<Message> onWarningMsg;
 
 	public FingerprintWorker(final int maxQueueSize, final int maxActiveInstanceSize, final int columnIndex,
 			final ExecutionMonitor exec, final long max, final BufferedDataContainer bdc,
-			final FingerprintSettings settings) {
+			final FingerprintSettings settings, final Consumer<Message> onWarningMsg) {
 
 		super(maxQueueSize, maxActiveInstanceSize);
 		this.exec = exec;
@@ -47,6 +51,7 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 		this.max = max;
 		this.settings = settings;
 		this.columnIndex = columnIndex;
+		this.onWarningMsg = onWarningMsg;
 	}
 
 	private NodeModel model;
@@ -92,12 +97,11 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 				DenseBitVectorCellFactory fact = new DenseBitVectorCellFactory(bitVector);
 				outCell = fact.createDataCell();
 			} catch (Exception ex) {
-				if (ex.getMessage().startsWith("Too many paths generate.")) {
-					model.notifyWarningListeners("Empty fingerprint: " + row.getKey().getString()
-							+ " - Too many paths generated. We're working to make this faster.");
-				} else {
-					model.notifyWarningListeners("Empty fingerprint: " + row.getKey().getString());
+				String warningText = "Empty fingerprint: " + row.getKey().getString();
+				if (!ex.getMessage().startsWith("Too many paths generate.")) {
+					warningText += " - Too many paths generated. We're working to make this faster.";
 				}
+				onWarningMsg.accept(Message.fromRowIssue(warningText, 0,  index, columnIndex, null));
 				outCell = DataType.getMissingCell();
 			}
 		}

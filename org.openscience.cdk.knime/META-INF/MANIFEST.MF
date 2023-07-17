@@ -12,14 +12,14 @@ Bundle-ClassPath: knime-cdk.jar,
  lib/ambit2-smarts-2.6.0-SNAPSHOT.jar,
  lib/ambit2-tautomers-2.6.0-SNAPSHOT.jar,
  lib/cdk-bundle-1.5.13.jar
-Require-Bundle: org.knime.base;bundle-version="[3.0.0,5.0.0)",
+Require-Bundle: org.knime.base;bundle-version="[5.1.0,6.0.0)",
  org.eclipse.ui;bundle-version="3.6.1",
- org.knime.workbench.repository;bundle-version="[3.0.0,5.0.0)",
- org.knime.distmatrix;bundle-version="[3.0.0,5.0.0)",
- org.knime.chem.types;bundle-version="[3.0.0,5.0.0)",
- org.knime.ext.chem.moss;bundle-version="[3.0.0,5.0.0)";resolution:=optional,
- org.knime.ext.svg;bundle-version="[3.1.0,5.0.0)",
- org.knime.product;bundle-version="4.2.0",
+ org.knime.workbench.repository;bundle-version="[5.1.0,6.0.0)",
+ org.knime.distmatrix;bundle-version="[5.1.0,6.0.0)",
+ org.knime.chem.types;bundle-version="[5.1.0,6.0.0)",
+ org.knime.ext.chem.moss;bundle-version="[5.1.0,6.0.0)";resolution:=optional,
+ org.knime.ext.svg;bundle-version="[5.1.0,6.0.0)",
+ org.knime.product;bundle-version="[5.1.0,6.0.0)",
  javax.xml.soap;bundle-version="1.2.0",
  javax.xml.rpc;bundle-version="1.1.0",
  org.apache.commons.logging;bundle-version="1.2.0"
@@ -213,5 +213,5 @@ Export-Package: javax.vecmath,
  signature
 Bundle-Activator: org.openscience.cdk.knime.CDKNodePlugin
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-11
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: org.openscience.cdk.knime
