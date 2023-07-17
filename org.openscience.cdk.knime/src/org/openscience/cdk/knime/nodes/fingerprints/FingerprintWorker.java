@@ -15,6 +15,8 @@ import org.knime.core.node.BufferedDataContainer;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.NodeModel;
+import org.knime.core.node.message.Message;
+import org.knime.core.node.message.MessageBuilder;
 import org.knime.core.util.MultiThreadWorker;
 import org.openscience.cdk.fingerprint.CircularFingerprinter;
 import org.openscience.cdk.fingerprint.EStateFingerprinter;
@@ -92,12 +94,13 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 				DenseBitVectorCellFactory fact = new DenseBitVectorCellFactory(bitVector);
 				outCell = fact.createDataCell();
 			} catch (Exception ex) {
-				if (ex.getMessage().startsWith("Too many paths generate.")) {
-					model.notifyWarningListeners("Empty fingerprint: " + row.getKey().getString()
-							+ " - Too many paths generated. We're working to make this faster.");
-				} else {
-					model.notifyWarningListeners("Empty fingerprint: " + row.getKey().getString());
+				String warningText = "Empty fingerprint: " + row.getKey().getString();
+				if !(ex.getMessage().startsWith("Too many paths generate.")) {
+					warningText += " - Too many paths generated. We're working to make this faster.";
 				}
+				MessageBuilder messageBuilder = new MessageBuilder();
+				messageBuilder.withSummary(warningText);
+				model.notifyWarningListeners(new Message(messageBuilder));
 				outCell = DataType.getMissingCell();
 			}
 		}
