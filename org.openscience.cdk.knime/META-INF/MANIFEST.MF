@@ -213,5 +213,5 @@ Export-Package: javax.vecmath,
  signature
 Bundle-Activator: org.openscience.cdk.knime.CDKNodePlugin
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.openscience.cdk.knime
