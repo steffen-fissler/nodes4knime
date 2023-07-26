@@ -30,6 +30,7 @@ import org.openscience.cdk.knime.commons.CDKNodeUtils;
 import org.openscience.cdk.knime.nodes.fingerprints.FingerprintSettings.FingerprintTypes;
 import org.openscience.cdk.knime.type.CDKValue;
 import org.openscience.cdk.silent.SilentChemObjectBuilder;
+import java.util.function.Consumer;
 
 public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 
