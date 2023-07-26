@@ -38,10 +38,11 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 	private final int columnIndex;
 	private final BufferedDataContainer bdc;
 	private final FingerprintSettings settings;
+	private final Consumer<Message> onWarningMsg;
 
 	public FingerprintWorker(final int maxQueueSize, final int maxActiveInstanceSize, final int columnIndex,
 			final ExecutionMonitor exec, final long max, final BufferedDataContainer bdc,
-			final FingerprintSettings settings) {
+			final FingerprintSettings settings, final Consumer<Message> onWarningMsg) {
 
 		super(maxQueueSize, maxActiveInstanceSize);
 		this.exec = exec;
@@ -49,6 +50,7 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 		this.max = max;
 		this.settings = settings;
 		this.columnIndex = columnIndex;
+		this.onWarningMsg = onWarningMsg;
 	}
 
 	private NodeModel model;
@@ -98,7 +100,7 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 				if (!ex.getMessage().startsWith("Too many paths generate.")) {
 					warningText += " - Too many paths generated. We're working to make this faster.";
 				}
-				model.notifyWarningListeners(Message.fromRowIssue(warningText, 0,  index, columnIndex, null));
+				onWarningMsg.accept(Message.fromRowIssue(warningText, 0,  index, columnIndex, null));
 				outCell = DataType.getMissingCell();
 			}
 		}
