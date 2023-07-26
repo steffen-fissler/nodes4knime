@@ -98,7 +98,7 @@ public class FingerprintWorker extends MultiThreadWorker<DataRow, DataRow> {
 				if (!ex.getMessage().startsWith("Too many paths generate.")) {
 					warningText += " - Too many paths generated. We're working to make this faster.";
 				}
-				MessageBuilder messageBuilder = createMessageBuilder();
+				MessageBuilder messageBuilder = model.createMessageBuilder();
 				messageBuilder.withSummary(warningText);
 				model.notifyWarningListeners(new Message(messageBuilder));
 				outCell = DataType.getMissingCell();
