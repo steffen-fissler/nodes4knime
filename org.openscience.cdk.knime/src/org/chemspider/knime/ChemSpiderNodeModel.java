@@ -104,53 +104,41 @@ public class ChemSpiderNodeModel extends NodeModel {
 		return new DataTableSpec[] { rearranger.createSpec() };
 	}
 
-	private ColumnRearranger rearrangeColumns(final DataTableSpec inSpecs) {
+	// private ColumnRearranger rearrangeColumns(final DataTableSpec inSpecs) {
 
-		ColumnRearranger bla = new ColumnRearranger(inSpecs);
-		DataColumnSpecCreator specCreator = new DataColumnSpecCreator(DataTableSpec.getUniqueColumnName(inSpecs,
-				"Mol File"), MolCell.TYPE);
+	// 	ColumnRearranger bla = new ColumnRearranger(inSpecs);
+	// 	DataColumnSpecCreator specCreator = new DataColumnSpecCreator(DataTableSpec.getUniqueColumnName(inSpecs,
+	// 			"Mol File"), MolCell.TYPE);
 
-		final int colIndex = inSpecs.findColumnIndex(inchikeyColumnName);
+	// 	final int colIndex = inSpecs.findColumnIndex(inchikeyColumnName);
 
-		bla.append(new SingleCellFactory(specCreator.createSpec()) {
+	// 	bla.append(new SingleCellFactory(specCreator.createSpec()) {
 
-			@Override
-			public DataCell getCell(final DataRow row) {
+	// 		@Override
+	// 		public DataCell getCell(final DataRow row) {
 
-				String inchiKey = ((StringValue) row.getCell(colIndex)).getStringValue();
-				try {
-					URL url = new URL("https://www.chemspider.com/InChIKey/" + inchiKey);
-					BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection()
-							.getInputStream()));
-					String line = reader.readLine();
-					String csid = "";
-					while (line != null) {
-						Matcher matcher = pattern.matcher(line);
-						if (matcher.find()) {
-							csid = matcher.group(1);
-							logger.debug("Found CSID: " + csid);
-						}
-						line = reader.readLine();
-					}
+	// 			String inchiKey = ((StringValue) row.getCell(colIndex)).getStringValue();
+	// 			try {
 
-					url = new URL("https://www.chemspider.com/mol/" + csid);
-					reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
+	// 				URL url = new URL("https://cactus.nci.nih.gov/chemical/structure/" + inchiKey + "/file?format=mol");
+	// 				BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
 
-					StringBuilder molFile = new StringBuilder();
-					line = reader.readLine();
-					while (line != null) {
-						molFile.append(line).append('\n');
-						line = reader.readLine();
-					}
-					return MolCellFactory.create(molFile.toString());
-				} catch (Exception exception) {
-					logger.error(exception.getMessage(), exception);
-					return DataType.getMissingCell();
-				}
-			}
-		});
-		return bla;
-	}
+	// 				StringBuilder molFile = new StringBuilder();
+	// 				line = reader.readLine();
+	// 				while (line != null) {
+	// 					molFile.append(line).append('\n');
+	// 					line = reader.readLine();
+	// 				}
+	// 				reader.close();
+	// 				return MolCellFactory.create(molFile.toString());
+	// 			} catch (Exception exception) {
+	// 				logger.error(exception.getMessage(), exception);
+	// 				return DataType.getMissingCell();
+	// 			}
+	// 		}
+	// 	});
+	// 	return bla;
+	// }
 
 	/**
 	 * {@inheritDoc}
