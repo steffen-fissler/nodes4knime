@@ -17,7 +17,7 @@
 	  <node category-path="/community/cdk" factory-class="org.openscience.cdk.knime.nodes.smarts.SmartsNodeFactory" id="org.openscience.cdk.knime.smarts.SmartsNodeFactory"/>
 	  <node category-path="/community/cdk" factory-class="org.openscience.cdk.knime.nodes.atomsignature.AtomSignatureNodeFactory" id="org.openscience.cdk.knime.atomsignature.AtomSignatureNodeFactory"/>
 	  <node category-path="/community/cdk" factory-class="org.openscience.cdk.knime.nodes.sugarremover.SugarRemoverNodeFactory" id="org.openscience.cdk.knime.sugarremover.SugarRemoverNodeFactory"/>
-	  <node category-path="/community/cdk" factory-class="org.chemspider.knime.ChemSpiderNodeFactory" id="org.chemspider.knime.ChemSpiderNodeFactory"/>
+	  <node category-path="/community/cdk" factory-class="org.chemspider.knime.ChemSpiderNodeFactory" id="org.chemspider.knime.ChemSpiderNodeFactory" deprecated="true"/>
    	  <node category-path="/community/cdk/3d" factory-class="org.openscience.cdk.knime.nodes.rmsdcalculator.RMSDCalculatorNodeFactory" id="org.openscience.cdk.knime.rmsdcalculator.RMSDCalculatorNodeFactory"/>
       <node category-path="/community/cdk" factory-class="org.openscience.cdk.knime.nodes.sumformula.SumFormulaNodeFactory" id="org.openscience.cdk.knime.sumformula.SumFormulaNodeFactory"/>
       <node category-path="/community/cdk" factory-class="org.openscience.cdk.knime.nodes.elementfilter.ElementFilterNodeFactory" id="org.openscience.cdk.knime.elementfilter.ElementFilterNodeFactory"/>

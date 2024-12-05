@@ -44,7 +44,9 @@ import org.knime.core.node.util.ColumnSelectionComboxBox;
  * {@link org.knime.core.node.NodeDialogPane}.
  * 
  * @author Egon Willighagen
+ * @deprecated
  */
+@Deprecated
 public class ChemSpiderNodeDialog extends NodeDialogPane {
 
 	@SuppressWarnings("unchecked")

@@ -9,6 +9,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/ambit2-tautomers-2.6.0-SNAPSHOT.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jchempaint-hotfix-3.4.jar"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src-deprecated" path="src"/>
 	<classpathentry exported="true" kind="lib" path="lib/jmol-10.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

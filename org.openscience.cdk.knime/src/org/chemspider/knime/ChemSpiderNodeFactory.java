@@ -26,7 +26,9 @@ import org.knime.core.node.NodeView;
  * ChemSpider.com.
  *
  * @author Egon Willighagen
+ * @deprecated
  */
+@Deprecated
 public class ChemSpiderNodeFactory extends NodeFactory<ChemSpiderNodeModel> {
 
     /**

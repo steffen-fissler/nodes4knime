@@ -47,7 +47,9 @@ import org.knime.core.node.NodeSettingsWO;
  * @TODO should also work with InChI
  * 
  * @author Egon Willighagen
+ * @deprecated
  */
+@Deprecated
 public class ChemSpiderNodeModel extends NodeModel {
 
 	private String inchikeyColumnName = null;
@@ -104,9 +106,9 @@ public class ChemSpiderNodeModel extends NodeModel {
 		return new DataTableSpec[] { rearranger.createSpec() };
 	}
 
-	// private ColumnRearranger rearrangeColumns(final DataTableSpec inSpecs) {
+	private ColumnRearranger rearrangeColumns(final DataTableSpec inSpecs) {
 
-	// 	ColumnRearranger bla = new ColumnRearranger(inSpecs);
+		ColumnRearranger bla = new ColumnRearranger(inSpecs);
 	// 	DataColumnSpecCreator specCreator = new DataColumnSpecCreator(DataTableSpec.getUniqueColumnName(inSpecs,
 	// 			"Mol File"), MolCell.TYPE);
 
@@ -137,8 +139,8 @@ public class ChemSpiderNodeModel extends NodeModel {
 	// 			}
 	// 		}
 	// 	});
-	// 	return bla;
-	// }
+		return bla;
+	}
 
 	/**
 	 * {@inheritDoc}
