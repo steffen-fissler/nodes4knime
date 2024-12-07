@@ -119,7 +119,7 @@ public class ChemSpiderNodeModel extends NodeModel {
 
 				String inchiKey = ((StringValue) row.getCell(colIndex)).getStringValue();
 				try {
-					URL url = new URL("http://www.chemspider.com/InChIKey/" + inchiKey);
+					URL url = new URL("https://legacy.chemspider.com/InChIKey/" + inchiKey);
 					BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection()
 							.getInputStream()));
 					String line = reader.readLine();
@@ -133,7 +133,7 @@ public class ChemSpiderNodeModel extends NodeModel {
 						line = reader.readLine();
 					}
 
-					url = new URL("http://www.chemspider.com/mol/" + csid);
+					url = new URL("https://legacy.chemspider.com/mol/" + csid);
 					reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream()));
 
 					StringBuilder molFile = new StringBuilder();
