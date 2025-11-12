@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: KNIME CDK Integration
 Bundle-SymbolicName: org.openscience.cdk.knime;singleton:=true
-Bundle-Version: 1.5.700.qualifier
+Bundle-Version: 1.6.000.qualifier
 Bundle-Vendor: KNIME GmbH, Konstanz and EMBL-EBI, Cambridge
 Bundle-ClassPath: knime-cdk.jar,
  lib/jmol-10.jar,
@@ -213,5 +213,5 @@ Export-Package: javax.vecmath,
  signature
 Bundle-Activator: org.openscience.cdk.knime.CDKNodePlugin
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-21
 Automatic-Module-Name: org.openscience.cdk.knime
