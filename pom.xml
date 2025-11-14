@@ -91,7 +91,7 @@
 					</configuration>
 				</plugin>
 				<plugin>
-					<groupId>org.eclipse.tycho.extras</groupId>
+					<groupId>org.eclipse.tycho</groupId>
 					<artifactId>tycho-buildtimestamp-jgit</artifactId>
 					<version>${tycho.extras.version}</version>
 				</plugin>
@@ -141,14 +141,14 @@
 			<plugin>
 				<!-- This plugin configuration block is only needed if the repository contains plug-ins that don't have any sources. If it is omitted
 		 		Tycho will complain. -->
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-source-feature-plugin</artifactId>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
 				<executions>
 					<execution>
 						<id>source-feature</id>
 						<phase>package</phase>
 						<goals>
-							<goal>source-feature</goal>
+							<goal>plugin-source</goal>
 						</goals>
 					</execution>
 				</executions>
@@ -169,7 +169,7 @@
 				<artifactId>tycho-packaging-plugin</artifactId>
 				<dependencies>
 					<dependency>
-						<groupId>org.eclipse.tycho.extras</groupId>
+						<groupId>org.eclipse.tycho</groupId>
 						<artifactId>tycho-buildtimestamp-jgit</artifactId>
 						<version>${tycho.extras.version}</version>
 					</dependency>
